@@ -25,7 +25,9 @@ const router = require('./router.js');
 // your Config Vars in the Heroku Dashboard > Settings > Config Vars section.
 // otherwise fallback to localhost.
 // The string after mongodb://localhost is the database name. It can be anything you want.
-const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/simpleMVCExample';
+const dbURL = process.env.MONGODB_URI
+|| 'mongodb+srv://tfire09:Facetime217!@cluster0.qga9p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+|| 'mongodb://localhost/simpleMVCExample';
 
 // call mongoose's connect function and pass in the url.
 // If there are any errors connecting, we will throw it and kill the server.
