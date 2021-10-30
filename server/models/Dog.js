@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 // A mongoDB model is a Mongo database structure with the API attached
 // That is, a model has built-in functions for its data structure like find, findOne, etc.
 // Usually you will retrieve data from the database through the Model object
-let CatModel = {};
+let DogModel = {};
 
 // A DB Schema to define our data structure
 // The schema really just defines a DB data structure.
@@ -29,20 +29,23 @@ let CatModel = {};
 // required is whether or not the field is required to allow a document to be created
 // trim is whether or not the field should strip spaces before and after value
 // unique is whether or not the field must be a unique value
-// (meaning no two Cat object can have the same value for that field)
+// (meaning no two Dog object can have the same value for that field)
 // min is the minimum numeric value
 // max is the maximum numeric value
 // default is the default value if one is not provided
 // match is the format to match done through regex
-const CatSchema = new mongoose.Schema({
+const DogSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
     trim: true,
-    unique: true,
   },
-
-  bedsOwned: {
+  breed: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  age: {
     type: Number,
     min: 0,
     required: true,
@@ -66,20 +69,20 @@ const CatSchema = new mongoose.Schema({
 // These are used when you want a public function you can call to do a task,
 // not a method that uses or returns instance variables
 // That is, these are used when you don't need an object, just a function to call.
-CatSchema.statics.findByName = (name, callback) => {
+DogSchema.statics.findByName = (name, callback) => {
   const search = {
     name,
   };
 
-  return CatModel.findOne(search, callback);
+  return DogModel.findOne(search, callback);
 };
 
-// Create the cat model based on the schema. You provide it with a custom discriminator
+// Create the Dog model based on the schema. You provide it with a custom discriminator
 // (the name of the object type. Can be anything)
 // and the schema to make a model from.
 // Look at the model variable definition above for more details.
-CatModel = mongoose.model('Cat', CatSchema);
+DogModel = mongoose.model('Dog', DogSchema);
 
 // export our public properties
-module.exports.CatModel = CatModel;
-module.exports.CatSchema = CatSchema;
+module.exports.DogModel = DogModel;
+module.exports.DogSchema = DogSchema;
